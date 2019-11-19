@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse, HttpResponse
 
-from .serializers import TodoSerializer
-from .models import Todo
+from .serializers import TodoSerializer, UserSerializer
+from .models import Todo, User
 
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from rest_framework.permissions import IsAuthenticated
@@ -50,3 +50,19 @@ def todo_detail(request, todo_id):
         todo.delete()
         
         return HttpResponse(status=204)
+
+
+@api_view(['GET'])
+@permission_classes((IsAuthenticated, ))
+@authentication_classes((JSONWebTokenAuthentication, ))
+def user_detail(request, user_id):
+
+    user = get_object_or_404(User, id=user_id)
+
+    if request.user != user:
+        return HttpResponse(status=403)
+
+    if request.method == 'GET':
+        serializer = UserSerializer(user)
+
+        return JsonResponse(serializer.data)
