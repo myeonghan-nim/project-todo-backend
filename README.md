@@ -69,3 +69,34 @@ MIDDLEWARE = [
 ```
 
 > add configuration for white-list checking
+
+### CRUD logic in Back-end
+
+```python
+from django.shortcuts import render, get_object_or_404
+from django.http import JsonResponse, HttpResponse
+
+from rest_framework.decorators import api_view, permission_classes, authentication_classes
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_jwt.authentication import JSONWebTokenAuthentication
+
+# Create your views here.
+
+
+@api_view(['GET', 'POST', 'PUT', 'DELETE'])  # api headers
+@permission_classes((IsAuthenticated, ))  # check permission
+@authentication_classes((JSONWebTokenAuthentication, ))  # check authentication
+def todo(request, todo_id):
+
+    if request.method == 'POST':
+        pass
+    else:
+        if request.method == 'GET':
+            pass
+        elif request.method == 'PUT':
+            pass
+        elif request.method == 'DELETE':
+            pass
+```
+
+> complete passed logic yourselves ^^7
