@@ -17,8 +17,10 @@ from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 def todo_create(request):
 
     serializer = TodoSerializer(data=request.POST)
+
     if serializer.is_valid():
         serializer.save()
+
         return JsonResponse(serializer.data)
 
     return HttpResponse(status=400)
@@ -28,12 +30,23 @@ def todo_create(request):
 @permission_classes((IsAuthenticated, ))
 @authentication_classes((JSONWebTokenAuthentication, ))
 def todo_detail(request, todo_id):
+
     todo = get_object_or_404(Todo, id=todo_id)
 
     if request.method == 'GET':
         serializer = TodoSerializer(todo)
+
         return JsonResponse(serializer.data)
     elif request.method == 'PUT':
-        pass
+        serializer = TodoSerializer(todo, request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+
+            return JsonResponse(serializer.data)
+
+        return HttpResponse(status=400)
     elif request.method == 'DELETE':
-        pass
+        todo.delete()
+        
+        return HttpResponse(status=204)
