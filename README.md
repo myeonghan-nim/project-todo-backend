@@ -1,6 +1,6 @@
-# todo-back
+# README
 
-### pip install
+## pip install
 
 ```bash
 $ pip install djangorestframework
@@ -10,7 +10,7 @@ $ pip install djangorestframework-jwt
 $ pip install django-cors-headers
 ```
 
-### Django rest framework
+## Django rest framework
 
 - Read installation of https://www.django-rest-framework.org/
 
@@ -26,7 +26,7 @@ urlpatterns = [
 ]
 ```
 
-### Django rest framework JWT
+## Django rest framework JWT
 
 - Read https://jpadilla.github.io/django-rest-framework-jwt/
 
@@ -53,7 +53,7 @@ urlpatterns = [
 
 > add additional settings for add settings
 
-### Django CORS
+## Django CORS
 
 - Read https://pypi.org/project/django-cors-headers/
 
@@ -70,7 +70,7 @@ MIDDLEWARE = [
 
 > add configuration for white-list checking
 
-### CRUD logic in Back-end
+## CRUD logic in back-end
 
 ```python
 from django.shortcuts import render, get_object_or_404
@@ -79,8 +79,6 @@ from django.http import JsonResponse, HttpResponse
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
-
-# Create your views here.
 
 
 @api_view(['GET', 'POST', 'PUT', 'DELETE'])  # api headers
