@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'todos',
+    'todo',
     'rest_framework',
     'corsheaders',
     'django.contrib.admin',
@@ -145,4 +145,4 @@ JWT_AUTH = {
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-AUTH_USER_MODEL = 'todos.user'
+AUTH_USER_MODEL = 'todo.user'
